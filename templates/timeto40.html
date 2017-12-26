@@ -1,0 +1,32 @@
+
+
+{# [START form] #}
+{% extends "base.html" %}
+
+{% block content %}
+<h3><center>Calculate</center></h3>
+
+<form action="{{ url_for('calculate_time') }}" method="GET" >
+
+	<div class="hours_input">
+		<center>
+			<label for "title">Goal Hours</label>
+			<input type="text" name="goal_hours" />
+			
+			<label for "title">Hours Worked</label>
+			<input type="text" name="hours_worked" />
+			
+			<label for "title">Time Clocked In</label>
+			<input type="time" name="time_clocked_in" />
+		</center>
+	</div>
+	<div class="button">
+		<center>
+			<button type="submit" class="btn btn-success">Calculate</button>
+		</center>
+	</div>
+	
+</form>
+
+{% endblock %}
+{# [END form] #}

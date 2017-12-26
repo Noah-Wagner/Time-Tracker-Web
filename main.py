@@ -1,6 +1,4 @@
-from flask import Flask
-from flask import request
-from flask import json
+from flask import Flask, request, render_template
 
 import TimeTracker
 
@@ -9,11 +7,16 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello world!'
+    return render_template("base.html")
 
 
-@app.route('/time')
-def clockout_time():
+@app.route('/clockout')
+def calculate_time_page():
+    return render_template("timeto40.html")
+
+
+@app.route('/calc_time')
+def calculate_time():
     goal_hours = request.args.get('goal_hours')
     hours_worked = request.args.get('hours_worked')
     clocked_in_time = request.args.get('time_clocked_in')
@@ -22,7 +25,7 @@ def clockout_time():
         clockout_time_string = TimeTracker.format_time(clockout_time)
     except ValueError as err:
         print(err)
-        return 'Error!'
+        return 'Error: ' + str(err)
     return clockout_time_string
 
 
